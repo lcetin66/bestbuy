@@ -1,4 +1,12 @@
+"""
+Module containing product information
+"""
 class Product:
+    """
+    This modul represents a specific product type
+    available in the store (for example, MacBook Air M2).
+    It encapsulates information about the product, including its name and price.
+    """
     def __init__(self, name:str, price:float, quantity:int)-> None:
         self.name = name
         self.price = price
@@ -40,7 +48,7 @@ class Product:
         """
         return self.active
 
-    def active(self):
+    def activate(self):
         """
         Activates the product.
         """

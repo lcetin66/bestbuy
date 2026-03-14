@@ -1,6 +1,9 @@
 """
 Module containing product information
 """
+RED = "\033[91m"
+RESET = "\033[39m\033[49m"
+
 class Product:
     """
     This modul represents a specific product type
@@ -13,15 +16,15 @@ class Product:
         self.quantity = quantity
 
         if name == "" or name.isspace():
-            raise ValueError('The product name cannot be left blank.')
+            raise ValueError(f'The product name {RED}cannot be left blank{RESET}.')
         self.name = name
 
         if not isinstance(price, (int, float)) or price < 0:
-            raise ValueError('"price" must be a non‑negative number.')
+            raise ValueError(f'"price" must be a {RED}non‑negative number{RESET}.')
         self.price = price
 
         if not isinstance(quantity, int) or quantity < 0:
-            raise ValueError('"quantity" must be an integer and must not be negative.')
+            raise ValueError(f'"quantity" must be an {RED}integer{RESET} and must {RED}not be negative{RESET}.')
         self.quantity = quantity
 
         self.active = True
@@ -74,9 +77,9 @@ class Product:
         Updates the product quantity.
         """
         if quantity < 0:
-            raise ValueError('"quantity" must not be negative.')
+            raise ValueError(f'"quantity" must {RED}not be negative{RESET}.')
         if quantity > self.quantity:
-            raise ValueError(f"You can only buy up to {self.quantity} units.")
+            raise ValueError(f'You can only buy up to {RED}{self.quantity}{RESET} units.')
 
         total_price = round(self.price * quantity, 2)
         self.quantity -= quantity

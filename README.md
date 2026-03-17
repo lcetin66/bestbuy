@@ -1,5 +1,11 @@
 # BestBuy Store Management System
 
+![Python](https://img.shields.io/badge/Python-3.11+-blue)
+![License](https://img.shields.io/badge/License-MIT-green)
+![Status](https://img.shields.io/badge/Status-Completed-brightgreen)
+![Masterschool](https://img.shields.io/badge/Masterschool-Bootcamp-orange)
+![Platform](https://img.shields.io/badge/Platform-Terminal%20%2B%20HTML-lightgrey)
+
 A sleek, command-line interface (CLI) application developed in Python for managing a retail store's inventory and processing customer orders.
 
 ## 🚀 Features

@@ -12,6 +12,13 @@ class Store:
         """ Initializes the store. """
         if products is None:
             products = []
+        if not isinstance(products, list):
+            raise TypeError("Products must be a list of Product instances.")
+        
+        for item in products:
+            if not isinstance(item, Product):
+                raise TypeError(f"All items in the products list must be {RED}Product instances{RESET}.")
+                
         self.products = list(products)
 
     def add_product(self, product):
@@ -25,6 +32,10 @@ class Store:
         """ Removes a product from the store. """
         if not isinstance(product, Product):
             raise TypeError(f"Product must be an {RED}instance of Product{RESET}.")
+
+        if product not in self.products:
+             raise ValueError(f'Product "{GREEN}{product.name}{RESET}" {RED}not found{RESET} in store.')
+
         self.products.remove(product)
 
     def get_total_quantity(self)->int:
@@ -50,10 +61,20 @@ class Store:
         Receives a list of tuples, where each tuple contains:
         (Product instance, quantity as int)
         """
+        if not isinstance(shopping_list, list):
+            raise TypeError("Shopping list must be a list of (Product, quantity) tuples.")
 
         total_price = 0
-
-        for product, quantity in shopping_list:
+        for item in shopping_list:
+            if not isinstance(item, (list, tuple)) or len(item) != 2:
+                raise TypeError("Each item in the shopping list must be a (Product, quantity) tuple.")
+            
+            product, quantity = item
+            
+            if not isinstance(product, Product):
+                raise TypeError(f"The first element of each tuple must be an {RED}instance of Product{RESET}.")
+            if not isinstance(quantity, int):
+                raise TypeError(f"The second element of each tuple (quantity) must be an {RED}integer{RESET}.")
 
             if product not in self.products:
                 raise ValueError(f'Product "{GREEN}{product.name}{RESET}" {RED}not found{RESET} in store.')
@@ -61,6 +82,6 @@ class Store:
             if not product.active:
                 raise ValueError(f'"{GREEN}{product.name}{RESET}" is {RED}not in stock{RESET}.')
 
-            total_price += product.buy(int(quantity))
+            total_price += product.buy(quantity)
 
         return total_price

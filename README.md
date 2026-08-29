@@ -79,4 +79,4 @@ Products in store:
 
 This project is open-source and available under the [MIT License](LICENSE).
 
-MSIT Project by CETIN 3CCS.COM
+MSIT Project
